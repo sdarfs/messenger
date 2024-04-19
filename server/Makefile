@@ -10,4 +10,7 @@ createdb:
 dropdb:
 	docker exec -it postgres14 dropdb chatGO
 
-.PHONY:postgresinit
+migratedown:
+	migrate -path db/migrations -database "postgresql://root:password@localhost:5433/chatGO?sslmode=disable"
+
+.PHONY:postgresinit postgres createdb dropdb migrateup migratedown
